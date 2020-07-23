@@ -1,0 +1,19 @@
+# folders
+dist/
+obj/
+packages/
+source/.vs/
+source/generated/
+source/packages/
+temp/
+tools/*
+
+# files
+*.csproj.user
+*.log
+*.sln.DotSettings.user
+*.userprefs
+.DS_Store
+
+# kept files
+!tools/packages.config
