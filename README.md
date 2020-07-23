@@ -26,3 +26,8 @@ Different types:
         Alphanumeric,
     }
 ````
+
+Build:
+```C#
+    build\build.cmd
+````
