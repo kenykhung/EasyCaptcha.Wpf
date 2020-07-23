@@ -14,4 +14,4 @@ if errorlevel 1 (
 echo %POWERSHELL%: Found in path
 
 cd "%PJ_D_ROOT%"
-%POWERSHELL% -ExecutionPolicy Unrestricted -File .\build.ps1
+%POWERSHELL% -ExecutionPolicy Unrestricted -File .\build.ps1 -Configuration Release
