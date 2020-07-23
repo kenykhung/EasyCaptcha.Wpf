@@ -1,5 +1,6 @@
 # EasyCaptcha.Wpf
-WPF Captcha usercontrol
+WPF Captcha usercontrol<br/><br/>
+![image](https://github.com/kenykhung/EasyCaptcha.Wpf/blob/master/sample.gif)
 
 Nuget Install:  
 >Install-Package EasyCaptcha.Wpf
