@@ -40,8 +40,8 @@ var nugetDir = distDir + Directory(configuration) + Directory("nuget");
 var homeDir = Directory(EnvironmentVariable("USERPROFILE") ?? EnvironmentVariable("HOME"));
 var reportReSharperDupFinder = distDir + Directory(configuration) + Directory("report/ReSharper/DupFinder");
 var reportReSharperInspectCode = distDir + Directory(configuration) + Directory("report/ReSharper/InspectCode");
-var nugetApiKey = EnvironmentVariable("NUGET_PUSH_TOKEN") ?? EnvironmentVariable("NUGET_APIKEY") ?? "NOTSET";
-var nugetSource = EnvironmentVariable("NUGET_PUSH_PATH") ?? EnvironmentVariable("NUGET_SOURCE") ?? "NOTSET";
+var nugetApiKey = EnvironmentVariable("NUGET_APIKEY") ?? "NOTSET";
+var nugetSource = EnvironmentVariable("NUGET_SOURCE") ?? "NOTSET";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -219,7 +219,7 @@ Task("Publish-NuGet-Package")
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-    .IsDependentOn("Build-NuGet-Package");
+    .IsDependentOn("Publish-NuGet-Package");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

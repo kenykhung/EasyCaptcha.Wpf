@@ -1,6 +1,7 @@
 # EasyCaptcha.Wpf
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9ragctgkfikop7io/branch/master?svg=true)](https://ci.appveyor.com/project/kenykhung/easycaptcha-wpf/branch/master)
+[![NuGet Badge](https://buildstats.info/nuget/EasyCaptcha.Wpf)](https://www.nuget.org/packages/EasyCaptcha.Wpf/)
 
 ![image](https://github.com/kenykhung/EasyCaptcha.Wpf/blob/master/sample.gif)
 
