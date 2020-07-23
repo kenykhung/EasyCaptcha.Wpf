@@ -40,6 +40,8 @@ var nugetDir = distDir + Directory(configuration) + Directory("nuget");
 var homeDir = Directory(EnvironmentVariable("USERPROFILE") ?? EnvironmentVariable("HOME"));
 var reportReSharperDupFinder = distDir + Directory(configuration) + Directory("report/ReSharper/DupFinder");
 var reportReSharperInspectCode = distDir + Directory(configuration) + Directory("report/ReSharper/InspectCode");
+var nugetApiKey = EnvironmentVariable("NUGET_PUSH_TOKEN") ?? EnvironmentVariable("NUGET_APIKEY") ?? "NOTSET";
+var nugetSource = EnvironmentVariable("NUGET_PUSH_PATH") ?? EnvironmentVariable("NUGET_SOURCE") ?? "NOTSET";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -189,27 +191,27 @@ Task("Build-NuGet-Package")
     DotNetCorePack("./source/" + product + "/", settings);
 });
 
-// Task("Publish-NuGet-Package")
-//     .WithCriteria(() => "Release".Equals(configuration) && !"NOTSET".Equals(nugetApiKey) && !"NOTSET".Equals(nugetSource))
-//     .IsDependentOn("Build-NuGet-Package")
-//     .Does(() =>
-// {
-//     var nugetPushVersion = semanticVersion;
-//     if (!"Release".Equals(configuration))
-//     {
-//         nugetPushVersion = string.Format("{0}-CI{1}", ciVersion, revision);
-//     }
-//     Information("Publish version: {0}", nugetPushVersion);
-//     var package = string.Format("./dist/{0}/nuget/{1}.{2}.nupkg", configuration, product, nugetPushVersion);
-//     NuGetPush(
-//             package,
-//             new NuGetPushSettings
-//             {
-//                     Source = nugetSource,
-//                     ApiKey = nugetApiKey
-//             }
-//     );
-// });
+Task("Publish-NuGet-Package")
+    .WithCriteria(() => "Release".Equals(configuration) && !"NOTSET".Equals(nugetApiKey) && !"NOTSET".Equals(nugetSource))
+    .IsDependentOn("Build-NuGet-Package")
+    .Does(() =>
+{
+    var nugetPushVersion = semanticVersion;
+    if (!"Release".Equals(configuration))
+    {
+        nugetPushVersion = string.Format("{0}-CI{1}", ciVersion, revision);
+    }
+    Information("Publish version: {0}", nugetPushVersion);
+    var package = string.Format("./dist/{0}/nuget/{1}.{2}.nupkg", configuration, product, nugetPushVersion);
+    NuGetPush(
+            package,
+            new NuGetPushSettings
+            {
+                    Source = nugetSource,
+                    ApiKey = nugetApiKey
+            }
+    );
+});
 
 
 //////////////////////////////////////////////////////////////////////
